@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 const API_BASE = (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) ||
   (import.meta.env.PROD ? "https://legal-buddy-vuhp.onrender.com" : "");
@@ -14,6 +14,13 @@ function App() {
   const [chatMessages, setChatMessages] = useState([]);
   const [userMessage, setUserMessage] = useState("");
   const [chatLoading, setChatLoading] = useState(false);
+  const [backendUp, setBackendUp] = useState(true);
+
+  useEffect(() => {
+    // Warm the backend (Render cold starts) and check connectivity
+    api.get("/api/health").then(() => setBackendUp(true)).catch(() => setBackendUp(false));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleUpload = async () => {
     if (!file) {
@@ -80,6 +87,13 @@ function App() {
         <h1>LegalBuddy — Notice Analyzer</h1>
       </div>
       <div className="sub">Upload an image or PDF. We’ll extract text and give court-ready guidance: Do / Don’t / Next Steps.</div>
+
+      {!backendUp && (
+        <div className="panel" style={{ borderColor: '#ff6b6b', marginBottom: 12 }}>
+          <div className="panel-header" style={{ background: '#3b1f1f' }}>Backend unreachable</div>
+          <div className="panel-body">Trying to reach the API. Please retry in a moment.</div>
+        </div>
+      )}
 
       <div className="grid">
         <div className="panel">
