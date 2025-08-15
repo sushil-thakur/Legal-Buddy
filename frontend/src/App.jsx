@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from "react";
 import axios from "axios";
-const API_BASE = import.meta.env.VITE_API_BASE || ""; // e.g., https://legal-buddy-vuhp.onrender.com
+const API_BASE = (import.meta.env.VITE_API_BASE && import.meta.env.VITE_API_BASE.trim()) ||
+  (import.meta.env.PROD ? "https://legal-buddy-vuhp.onrender.com" : "");
 const api = axios.create({ baseURL: API_BASE });
 
 function App() {
