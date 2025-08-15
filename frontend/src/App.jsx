@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from "react";
 import axios from "axios";
+const API_BASE = import.meta.env.VITE_API_BASE || ""; // e.g., https://legal-buddy-vuhp.onrender.com
+const api = axios.create({ baseURL: API_BASE });
 
 function App() {
   const [file, setFile] = useState(null);
@@ -28,7 +30,7 @@ function App() {
 
     try {
   // Use Vite dev proxy: '/api' -> http://localhost:3000
-  const res = await axios.post("/api/analyze", formData, {
+  const res = await api.post("/api/analyze", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
@@ -58,7 +60,7 @@ function App() {
 
     try {
       // Backend expects { userMessage, ocrText } at /api/analyze/chat
-      const res = await axios.post("/api/analyze/chat", { userMessage, ocrText });
+  const res = await api.post("/api/analyze/chat", { userMessage, ocrText });
       setChatMessages((prev) => [...prev, { sender: "AI", text: res.data.aiReply }]);
     } catch (err) {
       console.error(err);
