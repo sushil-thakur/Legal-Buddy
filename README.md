@@ -69,7 +69,7 @@ Wait for AI-generated explanation.
 Ask follow-up questions in the chat box.
 
 U CAN TEST THE WEBSITE HERE
-https://legal-buddy-x00v.onrender.com
+[https://legal-buddy-x00v.onrender.com](url)
 
 📌 API References
 
