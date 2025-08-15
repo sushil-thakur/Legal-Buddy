@@ -1,0 +1,58 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules
+node_modules/
+**/node_modules/
+
+# Build output
+/dist/
+**/dist/
+/build/
+**/build/
+.vite/
+**/.vite/
+
+# Environment files
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# Coverage
+coverage/
+**/coverage/
+
+# Caches & temp
+.cache/
+**/.cache/
+.tmp/
+**/.tmp/
+*.swp
+*.swo
+.eslintcache
+
+# Next/Parcel/etc
+.next/
+out/
+
+# Runtime data
+.pids
+*.pid
+*.pid.lock
+*.seed
+
+# IDE/editor
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
